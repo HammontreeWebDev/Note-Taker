@@ -2,6 +2,7 @@ const express = require('express');
 const PORT = process.env.PORT || 3001;
 const path = require('path');
 const apiData = require('../db/db.json');
+const fs = require('fs');
 
 // npm pkg to create unique non-sequential id's
 const { v4: uuidv4 } = require('uuid')
@@ -20,7 +21,7 @@ app.get('/notes', (req, res) => {
 // Api Data - GET
 app.get('/api/notes', (req, res) => {
 
-    return res.json(apiData);
+    res.json(apiData);
 });
 
 // Api Data - POST
@@ -40,6 +41,21 @@ app.post('/api/notes', (req, res) => {
             text,
             note_id: uuidv4(),
         };
+
+        // retrieve the current Note Data and add the new note to that data
+        fs.readFile('./db/db.json', 'utf-8', (err, data) => {
+            if (err) {
+                console.error(err);
+            }
+            else {
+                const noteData = JSON.parse(data);
+
+                noteData.push(newNote);
+
+                fs.writeFile('./db/db.json', JSON.stringify(noteData, null, 4),
+                (writeErr) => writeErr ? console.error(writeErr) : console.info('Added the new note!'));
+            }
+        });
         
         const response = {
             status: 'success',

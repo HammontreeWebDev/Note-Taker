@@ -71,6 +71,15 @@ app.post('/api/notes', (req, res) => {
     
 });
 
+// DELETE NOTE
+app.delete('api/notes/id:', (req, res) => {
+
+    // confirm req was made to delete note
+    console.info(`${req.method} request received to DELETE a note`);
+
+    
+})
+
 // If the path does not exist, send index.html (home page) - It is important to call this last so that it does not override the other routes/paths that we have designated
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));

@@ -26,7 +26,7 @@ app.get('/api/notes', (req, res) => {
 });
 
 app.post('api/notes', (req, res) => {
-    
+
 })
 
 // tell computer to listen to port for app to run

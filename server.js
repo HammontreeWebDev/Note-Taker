@@ -1,7 +1,7 @@
 const express = require('express');
 const PORT = process.env.PORT || 3001;
 const path = require('path');
-const apiData = require('../db/db.json');
+const apiData = require('./db/db.json');
 const fs = require('fs');
 
 // npm pkg to create unique non-sequential id's
@@ -15,7 +15,7 @@ app.use(express.static('public'));
 
 // Notes Page
 app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, 'notes.html'));
+    res.sendFile(path.join(__dirname, './public/notes.html'));
 });
 
 // Api Data - GET
@@ -71,18 +71,9 @@ app.post('/api/notes', (req, res) => {
     
 });
 
-// DELETE NOTE
-app.delete('api/notes/id:', (req, res) => {
-
-    // confirm req was made to delete note
-    console.info(`${req.method} request received to DELETE a note`);
-
-    
-})
-
 // If the path does not exist, send index.html (home page) - It is important to call this last so that it does not override the other routes/paths that we have designated
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 // tell computer to listen to port for app to run

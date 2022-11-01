@@ -2,15 +2,5 @@
     {
         "title": "Test Title",
         "text": "Test text"
-    },
-    {
-        "title": "New Note",
-        "text": "\nThis is my note\nIt is a good note",
-        "note_id": "8d5b3f8a-9021-4378-a85a-0b29e643905d"
-    },
-    {
-        "title": "Hello",
-        "text": "This is a note",
-        "note_id": "15916720-cf19-49c0-aebf-9401d251edf3"
     }
 ]

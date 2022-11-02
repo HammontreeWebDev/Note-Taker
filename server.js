@@ -31,7 +31,7 @@ app.post('/api/notes', (req, res) => {
     console.info(`${req.method} request recieved to add a new note`);
 
     // de-structure
-    const {title, text} = req.body;
+    const { title, text } = req.body;
 
     // check to see if a note has a title and text present
     if (title && text) {
@@ -53,10 +53,10 @@ app.post('/api/notes', (req, res) => {
                 noteData.push(newNote);
 
                 fs.writeFile('./db/db.json', JSON.stringify(noteData, null, 4),
-                (writeErr) => writeErr ? console.error(writeErr) : console.info('Added the new note!'));
+                    (writeErr) => writeErr ? console.error(writeErr) : console.info('Added the new note!'));
             }
         });
-        
+
         const response = {
             status: 'success',
             body: newNote,
@@ -68,7 +68,25 @@ app.post('/api/notes', (req, res) => {
     else {
         res.status(500).json('I apologize. We were not able to save your note at this time.')
     }
-    
+
+});
+
+// API Data DELETE
+
+app.delete(`/api/notes/:id`, (req, res) => {
+
+    // destructure and identify ID
+    const {id} = req.params;
+
+    // find the id associated with the current note selevted that is listed within the active API database that we have
+    const apiIndex = apiData.findIndex(note => note.id == id);
+
+    // based on the selected id, splice the data
+    apiData.splice(apiIndex, 1);
+
+    // return the new array of notes to the client
+    return res.send();
+
 });
 
 // If the path does not exist, send index.html (home page) - It is important to call this last so that it does not override the other routes/paths that we have designated

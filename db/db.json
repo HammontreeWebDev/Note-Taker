@@ -2,5 +2,15 @@
     {
         "title": "Test Title",
         "text": "Test text"
+    },
+    {
+        "title": "Example Note",
+        "text": "This is my new example note\n",
+        "note_id": "84c9e182-19cc-43e1-9889-a597c8de0106"
+    },
+    {
+        "title": "This is my note",
+        "text": "wow!",
+        "id": "f220eb05-fa4e-416f-816a-31b752ed49d4"
     }
 ]

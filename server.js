@@ -39,7 +39,7 @@ app.post('/api/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            note_id: uuidv4(),
+            id: uuidv4(),
         };
 
         // retrieve the current Note Data and add the new note to that data
